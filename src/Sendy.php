@@ -160,6 +160,29 @@ class Sendy
     }
 
     /**
+     * Method to remove subscriber from one list, NOT unsubscribe.
+     * Success: true
+     * Error: 
+     *   Error: API key not passed
+     *   Error: Invalid API key
+     *   Error: List ID not passed
+     *   Error: List does not exist
+     *   Error: Email address not passed
+     *   Error: Subscriber does not exist
+     *
+     * @param $email
+     *
+     * @return string
+     */
+    public function delete($email)
+    {
+        $url = 'api/subscribers/delete.php';
+
+        return $this->buildAndSend($url, ['email' => $email]);
+    }
+
+
+    /**
      * Method to get the current status of a subscriber.
      * Success: Subscribed, Unsubscribed, Unconfirmed, Bounced, Soft bounced, Complained
      * Error: No data passed, Email does not exist in list, etc.
